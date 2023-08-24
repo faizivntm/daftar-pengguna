@@ -23,8 +23,8 @@ class SplashScreen : Fragment() {
             val userListFragment = DaftarPengguna()
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container_view, userListFragment)
-                .commit()                           //isi ke halaman selanjutnya
-        }, 200)
+                .commit()
+        }, 2000) //waktu
         return view
     }
 }

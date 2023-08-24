@@ -1,4 +1,5 @@
 package com.example.tugaseureka.view
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tugaseureka.R
 import com.example.tugaseureka.api.ApiClient
-import com.example.tugaseureka.api.ApiResponse
 import com.example.tugaseureka.model.UserModel
 import com.example.tugaseureka.viewModel.UserAdapter
 import retrofit2.Call
@@ -29,12 +29,11 @@ class DaftarPengguna : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById(R.id.userRecyclerView)
 
-        val call: Call<ApiResponse<UserModel>> = apiService.getUsers()
-        call.enqueue(object : Callback<ApiResponse<UserModel>> {
-            override fun onResponse(call: Call<ApiResponse<UserModel>>, response: Response<ApiResponse<UserModel>>) {
+        val call: Call<List<UserModel>> = apiService.getUsers()
+        call.enqueue(object : Callback<List<UserModel>> {
+            override fun onResponse(call: Call<List<UserModel>>, response: Response<List<UserModel>>) {
                 if (response.isSuccessful) {
-                    val userResponse: ApiResponse<UserModel>? = response.body()
-                    val users: List<UserModel>? = userResponse?.data
+                    val users: List<UserModel>? = response.body()
 
                     // Lakukan sesuatu dengan daftar users
                     val userAdapter = UserAdapter(users ?: emptyList())
@@ -52,13 +51,12 @@ class DaftarPengguna : Fragment() {
                 }
             }
 
-            override fun onFailure(call: Call<ApiResponse<UserModel>>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserModel>>, t: Throwable) {
                 // Tangani kesalahan
                 Log.e("API Error", "Network Error: ${t.message}")
 
                 // Tampilkan pesan kesalahan kepada pengguna
                 val errorMessage = "Network error occurred"
-
             }
         })
     }

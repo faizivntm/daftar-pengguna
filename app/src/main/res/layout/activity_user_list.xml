@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -10,28 +11,37 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="50dp">
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            cardview:cardCornerRadius="50dp"
+            cardview:cardElevation="4dp">
 
         <ImageView
             android:id="@+id/avatarImageView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/splash_screen"
+            android:src="@drawable/default_image"
             android:layout_weight="0.5"/>
+
+        </androidx.cardview.widget.CardView>
 
 
         <TextView
-            android:id="@+id/emailTextView"
+            android:paddingStart="20dp"
+            android:id="@+id/loginTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
+            android:gravity="center_vertical|start"
             android:layout_marginStart="8dp"
             android:textColor="@color/black"
-            android:text="null"
-            android:textSize="16sp"
+            android:textSize="30sp"
             android:layout_weight="0.5"/>
+
     </LinearLayout>
 </layout>

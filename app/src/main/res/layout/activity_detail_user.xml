@@ -1,33 +1,81 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="com.example.tugaseureka.model.UserModel" />
-
         <variable
             name="user"
-            type="UserModel" />
+            type="com.example.tugaseureka.model.UserModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp">
 
-        <ImageView
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/splash_screen" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="50dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            cardview:cardCornerRadius="50dp"
+            cardview:cardElevation="4dp">
+
+            <ImageView
+                android:id="@+id/avatarImageView"
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_image"
+                android:layout_weight="0.5"/>
+
+        </androidx.cardview.widget.CardView>
+
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="@{user.email}"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="16dp" />
+            android:paddingStart="20dp"
+            android:id="@+id/loginTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|start"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:layout_weight="0.5"/>
     </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Followers" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Following" />
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+
+
 </layout>
